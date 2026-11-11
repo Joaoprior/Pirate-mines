@@ -1,0 +1,1035 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+  font-family: "Inter", sans-serif;
+  color: #f5ead1;
+  background: #07130f;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #07130f;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled,
+input:disabled,
+select:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.app {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  padding: 25px 5%;
+  overflow: hidden;
+}
+
+.jungle-mines-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.topbar,
+.game-container,
+.footer {
+  position: relative;
+  z-index: 1;
+}
+
+.topbar {
+  max-width: 1250px;
+  margin: 0 auto 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.brand-icon {
+  font-size: 38px;
+}
+
+.brand h1 {
+  margin: 0;
+  font-family: "Cinzel", serif;
+  font-size: 25px;
+  letter-spacing: 2px;
+  color: #f8d78b;
+  text-shadow: 0 2px 15px #d59a3a55;
+}
+
+.brand-subtitle {
+  color: #a9c4a7;
+  font-size: 10px;
+  letter-spacing: 4px;
+}
+
+.balance-card {
+  min-width: 170px;
+  padding: 12px 20px;
+  border: 1px solid #d4a34c77;
+  border-radius: 12px;
+  background: #10241ed9;
+  text-align: right;
+  box-shadow: 0 8px 30px #0005;
+}
+
+.balance-card span,
+.balance-card strong {
+  display: block;
+}
+
+.balance-card span {
+  color: #b9c8ae;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.balance-card strong {
+  margin-top: 5px;
+  color: #f7d37f;
+  font-size: 20px;
+}
+
+.game-container {
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.game-heading {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.eyebrow {
+  color: #e6bc67;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.game-heading h2 {
+  margin: 9px 0;
+  color: #fff0ca;
+  font-family: "Cinzel", serif;
+  font-size: clamp(27px, 4vw, 40px);
+  text-shadow: 0 3px 20px #000;
+}
+
+.game-heading p {
+  margin: 0;
+  color: #d0ddc9;
+  font-size: 14px;
+}
+
+.game-layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 22px;
+  align-items: stretch;
+}
+
+.control-panel,
+.board-panel,
+.history-panel {
+  border: 1px solid #b58b4b77;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #10251fef, #0a1715ed);
+  box-shadow: 0 15px 40px #0007, inset 0 1px #ffffff12;
+  backdrop-filter: blur(8px);
+}
+
+.control-panel {
+  padding: 22px;
+}
+
+.control-panel h3 {
+  margin: 0 0 22px;
+  color: #eac879;
+  font-family: "Cinzel", serif;
+  font-size: 16px;
+}
+
+.control-panel label {
+  display: block;
+  margin: 17px 0 8px;
+  color: #d6e0d0;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.bet-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border: 1px solid #9d824c;
+  border-radius: 8px;
+  background: #071510;
+}
+
+.bet-input span {
+  color: #e7bd68;
+  font-weight: 800;
+}
+
+.bet-input input {
+  width: 100%;
+  padding: 11px 0;
+  border: 0;
+  outline: none;
+  color: #fff2d2;
+  background: transparent;
+}
+
+.quick-bets {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.quick-bets button {
+  padding: 7px 3px;
+  border: 1px solid #54745b;
+  border-radius: 6px;
+  color: #dce8d6;
+  background: #193729;
+  font-size: 11px;
+  transition: 0.2s;
+}
+
+.quick-bets button:hover:not(:disabled) {
+  border-color: #e6bd69;
+  background: #28533a;
+}
+
+.control-panel select {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #9d824c;
+  border-radius: 8px;
+  outline: none;
+  color: #fff2d2;
+  background: #10241b;
+}
+
+.panel-divider {
+  height: 1px;
+  margin: 22px 0;
+  background: #b58b4b55;
+}
+
+.stat-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 13px 0;
+  color: #c4d2c1;
+  font-size: 12px;
+}
+
+.stat-line strong {
+  color: #f2d28a;
+}
+
+.potential {
+  margin-top: 22px;
+  padding: 14px;
+  border: 1px solid #c49b4e88;
+  border-radius: 9px;
+  background: #332b1766;
+  text-align: center;
+}
+
+.potential span,
+.potential strong {
+  display: block;
+}
+
+.potential span {
+  color: #d9c28e;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.potential strong {
+  margin-top: 6px;
+  color: #f8d477;
+  font-size: 21px;
+}
+
+.start-button,
+.cashout-button,
+.play-again-button {
+  width: 100%;
+  margin-top: 16px;
+  padding: 14px 10px;
+  border: 0;
+  border-radius: 9px;
+  color: #182116;
+  font-weight: 900;
+  letter-spacing: 1px;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.start-button {
+  background: linear-gradient(135deg, #f3d17d, #b98132);
+  box-shadow: 0 5px 20px #d9a54b33;
+}
+
+.cashout-button {
+  color: #062217;
+  background: linear-gradient(135deg, #9de5a4, #38ad70);
+  box-shadow: 0 5px 20px #38ad7044;
+}
+
+.start-button:hover:not(:disabled),
+.cashout-button:hover:not(:disabled),
+.play-again-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.12);
+}
+
+.cashout-button:disabled {
+  filter: grayscale(0.7);
+}
+
+.sound-button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 9px;
+  border: 1px solid #55735c;
+  border-radius: 7px;
+  color: #c7d8c4;
+  background: #142a20;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.demo-note {
+  margin: 15px 0 0;
+  color: #91a594;
+  font-size: 10px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.board-panel {
+  padding: 24px;
+}
+
+.board-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.board-label {
+  color: #b8c8b4;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.board-top h3 {
+  margin: 5px 0 0;
+  color: #f4d58e;
+  font-family: "Cinzel", serif;
+  font-size: 21px;
+}
+
+.mine-counter {
+  padding: 8px 12px;
+  border: 1px solid #a86b55;
+  border-radius: 20px;
+  color: #ffd0b2;
+  background: #4b241e88;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* PIRATA E PAPAGAIO */
+
+.pirate-scene {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 265px;
+  margin: 0 auto 12px;
+  padding: 8px 12px 14px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.pirate-scene::before,
+.pirate-scene::after {
+  position: absolute;
+  z-index: -1;
+  content: "✦";
+  color: #ffd66e;
+  font-size: 25px;
+  text-shadow: 0 0 12px #ffb52e, 0 0 24px #ff8c24;
+  pointer-events: none;
+  animation: pirateSparkle 2.2s ease-in-out infinite;
+}
+
+.pirate-scene::before {
+  top: 16%;
+  left: 12%;
+}
+
+.pirate-scene::after {
+  right: 11%;
+  bottom: 25%;
+  animation-delay: -1.1s;
+}
+
+.pirate-rig {
+  position: relative;
+  display: block;
+  width: min(100%, 340px);
+  aspect-ratio: 1672 / 941;
+  filter: drop-shadow(0 10px 18px #0009);
+  transform-origin: center 90%;
+  transition: filter 0.25s ease;
+  will-change: transform;
+}
+
+.pirate-speech {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  max-width: 100%;
+  padding: 9px 17px;
+  border: 1px solid #d8ad5c88;
+  border-radius: 30px;
+  color: #ffe5a5;
+  background: linear-gradient(135deg, #263b27ee, #10251fee);
+  box-shadow: 0 4px 15px #0005;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  text-align: center;
+}
+
+.speech-sparkle {
+  color: #f4ce70;
+  font-size: 14px;
+}
+
+/* Comemoração ao encontrar uma gema */
+
+.pirate-gem .pirate-rig {
+  animation: pirateGemCelebrate 0.65s ease-in-out 1;
+  filter: drop-shadow(0 0 15px #55f0c0aa);
+}
+
+.pirate-gem .pirate-speech {
+  animation: speechCelebrate 0.65s ease-out 1;
+  border-color: #65e6bd;
+}
+
+/* Sustos ao encontrar uma mina */
+
+.pirate-mine .pirate-rig {
+  animation: pirateMineScare 0.55s ease-in-out 1;
+  filter: drop-shadow(0 0 14px #ff634e99);
+}
+
+.pirate-mine .pirate-speech {
+  border-color: #ff7964;
+  color: #ffc0ae;
+  animation: speechScare 0.45s ease-in-out 1;
+}
+
+/* Comemoração especial ao resgatar */
+
+.pirate-cashout .pirate-rig {
+  animation: pirateCashoutCelebrate 0.85s ease-in-out 1;
+  filter: drop-shadow(0 0 20px #f5ce62bb);
+}
+
+.pirate-cashout .pirate-speech {
+  border-color: #f5ce62;
+  color: #ffe6a1;
+  animation: speechCelebrate 0.75s ease-out 1;
+}
+
+.pirate-idle .pirate-rig {
+  filter: drop-shadow(0 0 13px #f4bd4b55);
+}
+
+.pirate-idle::before,
+.pirate-idle::after {
+  animation-duration: 1.8s;
+}
+
+.pirate-gem::before,
+.pirate-gem::after,
+.pirate-cashout::before,
+.pirate-cashout::after {
+  content: "✦";
+  font-size: 34px;
+  animation: pirateBurst 0.8s ease-out 2;
+}
+
+.pirate-mine::before,
+.pirate-mine::after {
+  color: #ff785e;
+  text-shadow: 0 0 15px #ff3928;
+  animation: pirateWarning 0.45s ease-in-out 3;
+}
+
+/* TABULEIRO */
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(6px, 1.5vw, 12px);
+  max-width: 540px;
+  margin: 0 auto;
+  padding: clamp(8px, 2vw, 15px);
+  border: 1px solid #a17a43;
+  border-radius: 13px;
+  background: #071a15c9;
+  box-shadow: inset 0 0 25px #0008;
+}
+
+.cell {
+  position: relative;
+  display: grid;
+  aspect-ratio: 1;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid #b38a4d;
+  border-radius: 9px;
+  color: #f5d68e;
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 900;
+  transition: transform 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.cell-hidden {
+  background: linear-gradient(145deg, #28533a, #102c21);
+  box-shadow: inset 0 2px #ffffff16, 0 4px 0 #07150f;
+}
+
+.cell-hidden:not(:disabled):hover {
+  transform: translateY(-3px) scale(1.03);
+  border-color: #f4d17a;
+  background: linear-gradient(145deg, #39734a, #1a432c);
+}
+
+.cell-question {
+  opacity: 0.75;
+  text-shadow: 0 2px 7px #0008;
+}
+
+.cell-revealed {
+  animation: revealCell 0.35s ease-out both;
+}
+
+.cell-gem {
+  border-color: #6ae5c4;
+  background: radial-gradient(circle, #276b62, #123a34);
+  box-shadow: 0 0 18px #48e3c477, inset 0 0 14px #8fffff33;
+}
+
+.cell-mine {
+  border-color: #ff795c;
+  background: radial-gradient(circle, #9b3428, #401a1a);
+  box-shadow: 0 0 20px #ff513c88;
+  animation: mineShake 0.45s ease-in-out;
+}
+
+.cell-reward {
+  display: inline-block;
+  animation: rewardPop 0.45s cubic-bezier(.2, 1.5, .5, 1) both;
+}
+
+.game-message {
+  min-height: 48px;
+  display: grid;
+  place-items: center;
+  margin-top: 18px;
+  padding: 10px;
+  border: 1px solid #b58b4b55;
+  border-radius: 9px;
+  color: #e4d6b5;
+  background: #091812c9;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.result-derrota {
+  border-color: #e45d4c;
+  color: #ffb4a2;
+  background: #471b1bcc;
+}
+
+.result-vitória,
+.result-resgate {
+  border-color: #69c99b;
+  color: #b3f3ca;
+  background: #123b2bcc;
+}
+
+.play-again-button {
+  color: #182116;
+  background: linear-gradient(135deg, #f3d17d, #b98132);
+}
+
+/* HISTÓRICO */
+
+.history-panel {
+  margin-top: 24px;
+  padding: 20px 22px;
+}
+
+.history-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.history-heading h3 {
+  margin: 5px 0 0;
+  color: #f3d58d;
+  font-family: "Cinzel", serif;
+  font-size: 19px;
+}
+
+.history-heading button {
+  padding: 8px 12px;
+  border: 1px solid #8b6940;
+  border-radius: 7px;
+  color: #d5c39f;
+  background: #1a2c22;
+  font-size: 11px;
+}
+
+.history-heading button:disabled {
+  opacity: 0.4;
+}
+
+.empty-history {
+  color: #aab9a6;
+  font-size: 12px;
+  text-align: center;
+}
+
+.history-list {
+  display: grid;
+  gap: 8px;
+}
+
+.history-item {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 0.7fr 0.6fr 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 11px;
+  border: 1px solid #ffffff12;
+  border-radius: 8px;
+  color: #c9d5c4;
+  background: #07171099;
+  font-size: 11px;
+}
+
+.history-result {
+  color: #e8cb8d;
+  font-weight: 800;
+}
+
+.history-item strong {
+  text-align: right;
+}
+
+.positive {
+  color: #8ee4a7;
+}
+
+.negative {
+  color: #ff9580;
+}
+
+.footer {
+  margin: 25px auto 0;
+  color: #b2c0a6;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+/* ANIMAÇÕES GERAIS */
+
+@keyframes revealCell {
+  0% {
+    transform: scale(0.7) rotateY(90deg);
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: scale(1) rotateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes rewardPop {
+  0% {
+    transform: scale(0.2) rotate(-25deg);
+    opacity: 0;
+  }
+
+  70% {
+    transform: scale(1.3) rotate(8deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+@keyframes mineShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  20%, 60% {
+    transform: translateX(-5px);
+  }
+
+  40%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes pirateIdle {
+  0%, 100% {
+    transform: translateY(0) rotate(-1deg) scale(1);
+  }
+
+  25% {
+    transform: translateY(-7px) rotate(1.2deg) scale(1.015);
+  }
+
+  50% {
+    transform: translateY(-3px) rotate(0deg) scale(1.025);
+  }
+
+  75% {
+    transform: translateY(-9px) rotate(-1.2deg) scale(1.01);
+  }
+}
+
+@keyframes pirateGemCelebrate {
+  0%, 100% {
+    transform: translateY(0) rotate(0) scale(1);
+  }
+
+  35% {
+    transform: translateY(-18px) rotate(-5deg) scale(1.06);
+  }
+
+  70% {
+    transform: translateY(-8px) rotate(5deg) scale(1.03);
+  }
+}
+
+@keyframes pirateMineScare {
+  0%, 100% {
+    transform: translateX(0) rotate(0);
+  }
+
+  20% {
+    transform: translateX(-9px) rotate(-4deg);
+  }
+
+  40% {
+    transform: translateX(9px) rotate(4deg);
+  }
+
+  60% {
+    transform: translateX(-6px) rotate(-3deg);
+  }
+
+  80% {
+    transform: translateX(5px) rotate(2deg);
+  }
+}
+
+@keyframes pirateCashoutCelebrate {
+  0%, 100% {
+    transform: translateY(0) scale(1) rotate(0);
+  }
+
+  30% {
+    transform: translateY(-22px) scale(1.1) rotate(-5deg);
+  }
+
+  60% {
+    transform: translateY(-10px) scale(1.06) rotate(5deg);
+  }
+}
+
+@keyframes pirateSparkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.55) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.2) rotate(35deg); }
+}
+
+@keyframes pirateBurst {
+  0% { opacity: 0; transform: scale(0.3) rotate(0deg); }
+  45% { opacity: 1; transform: scale(1.35) rotate(70deg); }
+  100% { opacity: 0; transform: scale(0.7) rotate(130deg); }
+}
+
+@keyframes pirateWarning {
+  0%, 100% { opacity: 0.35; transform: translateX(0) scale(0.8); }
+  50% { opacity: 1; transform: translateX(5px) scale(1.25); }
+}
+
+@keyframes speechCelebrate {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes speechScare {
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-4px);
+  }
+
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+.effect-gem .board-panel {
+  animation: gemGlow 0.55s ease-out;
+}
+
+.effect-mine .board-panel {
+  animation: explosionFlash 0.55s ease-out;
+}
+
+.effect-cashout .potential {
+  animation: cashoutPulse 0.6s ease-out;
+}
+
+@keyframes gemGlow {
+  50% {
+    box-shadow: 0 0 35px #4eeac477;
+  }
+}
+
+@keyframes explosionFlash {
+  30% {
+    box-shadow: 0 0 45px #ff593f99;
+  }
+}
+
+@keyframes cashoutPulse {
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 25px #8ee4a788;
+  }
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 800px) {
+  .game-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .control-panel {
+    order: 2;
+  }
+
+  .board-panel {
+    order: 1;
+  }
+
+  .game-board {
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 520px) {
+  .app {
+    padding: 18px 12px;
+  }
+
+  .topbar {
+    margin-bottom: 25px;
+  }
+
+  .brand h1 {
+    font-size: 17px;
+  }
+
+  .brand-icon {
+    font-size: 29px;
+  }
+
+  .balance-card {
+    min-width: 125px;
+    padding: 9px;
+  }
+
+  .balance-card strong {
+    font-size: 15px;
+  }
+
+  .game-heading p {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .board-panel {
+    padding: 13px;
+  }
+
+  .pirate-scene {
+    min-height: 205px;
+    margin-bottom: 8px;
+  }
+
+  .pirate-rig {
+    width: min(100%, 275px);
+  }
+
+  .pirate-speech {
+    padding: 8px 12px;
+    font-size: 9px;
+    letter-spacing: 0.8px;
+  }
+
+  .history-item {
+    grid-template-columns: 1fr 1fr;
+    font-size: 10px;
+  }
+
+  .history-item strong {
+    text-align: left;
+  }
+
+  .history-heading {
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pirate-rig,
+  .pirate-scene::before,
+  .pirate-scene::after,
+  .pirate-speech {
+    animation: none !important;
+  }
+}
+
+/* RIG: corpo, braço e asa em camadas */
+.rig-body, .rig-layer { position: absolute; inset: 0; width: 100%; height: 100%; }
+.rig-body { transform-origin: 55% 100%; animation: rigBreath 3.2s ease-in-out infinite; }
+.rig-layer, .rig-part { user-select: none; pointer-events: none; }
+.rig-part { position: absolute; will-change: transform; }
+.rig-arm { left: 4.6%; top: 0; width: 20.4%; height: 50.3%; transform-origin: 39% 93%;
+  animation: rigArm 3.2s ease-in-out infinite; }
+.rig-wing { left: 70.75%; top: 1.1%; width: 25.4%; height: 57.3%; transform-origin: 7.5% 76%;
+  animation: rigWing 3.2s ease-in-out infinite; }
+
+.pirate-gem .rig-arm, .pirate-cashout .rig-arm { animation: rigArmCheer 0.45s ease-in-out infinite; }
+.pirate-gem .rig-wing, .pirate-cashout .rig-wing { animation: rigWingFlap 0.22s ease-in-out infinite; }
+.pirate-gem .rig-body, .pirate-cashout .rig-body { animation: rigLaugh 0.3s ease-in-out infinite; }
+.pirate-mine .rig-arm { animation: none; transform: rotate(18deg); }
+.pirate-mine .rig-wing { animation: rigWingFlap 0.1s linear infinite; }
+
+@keyframes rigBreath {
+  0%, 100% { transform: scale(1, 1); }
+  50% { transform: scale(1.006, 1.016); }
+}
+/* repouso -> comemora acenando -> volta (ciclo como no vídeo) */
+@keyframes rigArm {
+  0%, 22% { transform: rotate(16deg); }
+  34% { transform: rotate(-4deg); }
+  44% { transform: rotate(-12deg); }
+  54% { transform: rotate(2deg); }
+  64% { transform: rotate(-12deg); }
+  74% { transform: rotate(-2deg); }
+  88%, 100% { transform: rotate(16deg); }
+}
+@keyframes rigWing {
+  0%, 22% { transform: rotate(10deg) scaleY(0.96); }
+  30% { transform: rotate(-12deg) scaleY(1.04); }
+  38% { transform: rotate(14deg) scaleY(0.95); }
+  46% { transform: rotate(-12deg) scaleY(1.04); }
+  54% { transform: rotate(14deg) scaleY(0.95); }
+  62% { transform: rotate(-10deg) scaleY(1.03); }
+  72% { transform: rotate(8deg) scaleY(0.97); }
+  88%, 100% { transform: rotate(10deg) scaleY(0.96); }
+}
+@keyframes rigArmCheer { 0%, 100% { transform: rotate(-14deg); } 50% { transform: rotate(4deg); } }
+@keyframes rigWingFlap { 0%, 100% { transform: rotate(-14deg) scaleY(1.05); } 50% { transform: rotate(16deg) scaleY(0.94); } }
+@keyframes rigLaugh { 0%, 100% { transform: translateY(0) scale(1, 1); } 50% { transform: translateY(-1.5%) scale(1.012, 0.985); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .rig-body, .rig-arm, .rig-wing { animation: none !important; }
+}
