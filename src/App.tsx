@@ -23,7 +23,198 @@ type RoundHistory = {
 
 type GameEffect = "gem" | "mine" | "cashout" | null;
 
-const BOARD_SIZE = 25;
+const BOARD_SIZE = 25;    const nextGems = gemsFound + 1;
+
+    const nextMultiplier = calculateMultiplier(nextGems, mineCount);
+
+    const safeCells = BOARD_SIZE - mineCount;
+
+    const updatedBoard = board.map((cell) =>
+
+      cell.id === id ? { ...cell, revealed: true } : cell
+
+    );
+
+    setBoard(updatedBoard);
+
+    setGemsFound(nextGems);
+
+    setCurrentMultiplier(nextMultiplier);
+
+    setMessage(`💎 Gema encontrada! Multiplicador ${nextMultiplier.toFixed(2)}x`);
+
+    sound("gem");
+
+    if (nextGems === safeCells) {
+
+      const payout = bet * nextMultiplier;
+
+      setBalance((previous) => previous + payout);
+
+      setGameActive(false);
+
+      setLastResult("VITÓRIA");
+
+      setMessage("🏆 Incrível! Você encontrou todas as gemas!");
+
+      triggerEffect("cashout");
+
+      sound("cashout");
+
+      addHistory("VITÓRIA", payout, nextMultiplier, nextGems);
+
+    } else {
+
+      triggerEffect("gem");
+
+    }
+
+  }
+
+  function cashOut() {
+
+    if (!gameActive || gemsFound === 0) return;
+
+    const payout = bet * currentMultiplier;
+
+    setBalance((previous) => previous + payout);
+
+    setGameActive(false);
+
+    setLastResult("RESGATE");
+
+    setMessage(`💰 Resgate realizado! Você recebeu ${formatMoney(payout)}.`);
+
+    triggerEffect("cashout");
+
+    sound("cashout");
+
+    addHistory("RESGATE", payout, currentMultiplier, gemsFound);
+
+  }
+
+  function clearHistory() {
+
+    setHistory([]);
+
+    localStorage.removeItem(HISTORY_KEY);
+
+  }
+
+  const potentialPayout = bet * currentMultiplier;
+
+  const pirateMessage =
+
+    effect === "gem"
+
+      ? "TESOURO ENCONTRADO!"
+
+      : effect === "mine"
+
+        ? "CUIDADO! UMA MINA!"
+
+        : effect === "cashout"
+
+          ? "ARRR! TESOURO CONQUISTADO!"
+
+          : gameActive
+
+            ? "O tesouro está por aqui..."
+
+            : "Vamos encontrar tesouros!";
+
+  return (
+
+    <main className={`app ${effect ? `effect-${effect}` : ""}`}>
+
+      <JungleMinesBackground />
+
+      <header className="topbar">
+
+        <div className="brand">
+
+          <span className="brand-icon">🏴‍☠️</span>
+
+          <div>
+
+            <h1>PIRATE MINES</h1>
+
+            <span className="brand-subtitle">TREASURE HUNT</span>
+
+          </div>
+
+        </div>
+
+        <div className="balance-card">
+
+          <span>SEU SALDO</span>
+
+          <strong>{formatMoney(balance)}</strong>
+
+        </div>
+
+      </header>
+
+      <section className="game-container">
+
+        <div className="game-heading">
+
+          <span className="eyebrow">⚓ AVENTURA PIRATA</span>
+
+          <h2>Encontre o tesouro!</h2>
+
+          <p>Revele as gemas e fuja das minas para multiplicar sua recompensa.</p>
+
+        </div>
+
+        <div className="game-layout">
+
+          <aside className="control-panel">
+
+            <h3>⚙️ CONFIGURAÇÃO</h3>
+
+            <label htmlFor="bet">Valor da aposta</label>
+
+            <div className="bet-input">
+
+              <span>R$</span>
+
+              <input
+
+                id="bet"
+
+                type="number"
+
+                min="1"
+
+                max={balance}
+
+                value={bet}
+
+                disabled={gameActive}
+
+                onChange={(event) => setBet(Number(event.target.value))}
+
+              />
+
+            </div>
+
+            <div className="quick-bets">
+
+              {[10, 25, 50, 100].map((value) => (
+
+                <button
+
+                  key={value}
+
+                  disabled={gameActive || value > balance}
+
+                  onClick={() => setBet(value)}
+
+                >
+
+                  {value}
+
 const HOUSE_EDGE = 0.97;
 const HISTORY_KEY = "jungle-mines-history";
 
